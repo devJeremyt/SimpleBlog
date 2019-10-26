@@ -32,6 +32,20 @@ app.get('/blogs', (req, res)=>{
     });
 });
 
+app.get('/blogs/new', (req,res)=>{
+        res.render('new');
+});
+
+app.post('/blogs',(req,res)=>{
+    Blog.create(req.body.blog, (err, newBlog)=>{
+        if(err){
+            console.log(err);
+        } else{
+            res.redirect('/blogs');
+        }
+    });
+});
+
 app.listen(3000, ()=>{
     console.log("Blog App Server listening on port 3000");
 });
