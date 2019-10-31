@@ -61,7 +61,7 @@ app.get('/blogs/:id', (req,res)=>{
 app.get('/blogs/:id/edit', (req,res)=>{
     Blog.findById(req.params.id, (err, foundBlog)=>{
         if(err){
-            res.redirect('/blog');
+            res.redirect('/blogs');
         } else{
             res.render('edit', {blog: foundBlog});
         };
@@ -75,6 +75,16 @@ app.put('/blogs/:id', (req,res)=>{
         } else{
             res.redirect('/blogs/' + req.params.id);
         };
+    });
+});
+
+app.delete('/blogs/:id', (req,res)=>{
+    Blog.findByIdAndDelete(req.params.id, (err)=>{
+        if(err){
+            console.log(err);
+        } else{
+            res.redirect('/blogs');            
+        }
     });
 });
 
