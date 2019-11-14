@@ -43,7 +43,7 @@ app.get('/blogs/new', (req,res)=>{
 
 //CREATE ROUTE
 app.post('/blogs',(req,res)=>{
-    req.body.blog.body = req.sanitize(re.body.blog.body);
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, (err, newBlog)=>{
         if(err){
             console.log(err);
